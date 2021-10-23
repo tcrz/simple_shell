@@ -1,41 +1,27 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
+#include "header.h"
 
-
-int main ()
+void welcome()
 {
-        size_t n = 100;
-        char *buf, *str;
-        char *delim = " ";
-        int fl;
-
-         buf = malloc(sizeof(char) * n);
-        if (!buf)
-                return (0);
-
-        printf("($) ");
-
-        /* read a line */
-        fl = getline(&buf, &n, stdin);
-        if (fl < 0)
-        {
-                perror("yawa dey");
-                exit(EXIT_FAILURE);
-        }
-
-        /* split strings */
-        str = strtok(buf, delim);
-        if(!str)
-        {
-                printf("%s..couldnt split\n", buf);
-                return (0);
-        }
-        while(str)
-        {
-                printf("%s\n", str);
-                str = strtok(NULL, delim);
-
-        }
+	_printf("($) ");
 }
+void get_cmd(char *cmd)
+{
+	int r = 100;
+	read(STDIN_FILENO, cmd, r);
+}
+int main(void)
+{
+	unsigned int status = 1;
+	char cmd[100];
 
+	while(status)
+	{
+		welcome();
+		get_cmd(cmd);
+		_printf(cmd);
+		
+		if(cmd == "EXIT")
+			return (0);
+	}
+return (0);
+}
