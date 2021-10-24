@@ -2,11 +2,12 @@
 int _strcmp(char *str, char *strcom)
 {
 	int i = 0;
-	_print(str);
-	for(; str[i] || strcom[i]; i++)
+	
+	while(str[i] != '\0' && strcom[i] != '\0')
 	{
-		if(str[i] != strcom[i])
+		if(str[i] != strcom[i] )
 			return (1);
+		i++;
 	}
 	return (0);
 }
