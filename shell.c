@@ -2,26 +2,27 @@
 
 void welcome()
 {
-	_printf("($) ");
+	_print("($) ");
 }
-void get_cmd(char *cmd)
+void get_cmd(char **cmd)
 {
-	int r = 100;
-	read(STDIN_FILENO, cmd, r);
+	size_t r = 1000;
+	getline(cmd, &r, stdin);
 }
 int main(void)
 {
 	unsigned int status = 1;
-	char cmd[100];
-
+	char *cmd;
+	
+	cmd = malloc(sizeof(char) * 1000);
 	while(status)
 	{
 		welcome();
-		get_cmd(cmd);
-		_printf(cmd);
-		
-		if(cmd == "EXIT")
-			return (0);
+		get_cmd(&cmd);
+		_print(cmd);
+		if(_strcmp(cmd, "exit") == 0)
+			status = 0;
 	}
-return (0);
+	free(cmd);
+	return (0);
 }
