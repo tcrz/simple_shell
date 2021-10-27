@@ -68,7 +68,6 @@ int main(void)
 	while (status)
 	{
 		int i = 0;
-		char *cmd, **args;
 
 		_print("($) ");
 		get_cmd(&cmd);
