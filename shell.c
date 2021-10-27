@@ -31,8 +31,6 @@ void get_cmd(char **cmd)
 	getline(cmd, &r, stdin);
 }
 
-char **split_cmd(char *buf)
-
 void keylogger(char **userinput)
 {
 	size_t r = 1000;
