@@ -1,6 +1,5 @@
 #include "header.h"
 
-
 void execute(char **args)
 {
 	int id;
@@ -31,14 +30,7 @@ void get_cmd(char **cmd)
 	getline(cmd, &r, stdin);
 }
 
-void keylogger(char **userinput)
-{
-	size_t r = 1000;
-	getline(userinput, &r, stdin);
-}
-
-char** split_str(char *buf)
-
+char **split_cmd(char *buf)
 {
 	char *token, **eachstr, *delim = " \n";
 	int count = 0;
@@ -64,10 +56,10 @@ char** split_str(char *buf)
 int main(void)
 {
 	unsigned int status = 1;
-	char *userinput, **args;
+	char *cmd, **args;
 
-	userinput = malloc(sizeof(char) * 1000);
-	if (!userinput)
+	cmd = malloc(sizeof(char) * 1000);
+	if (!cmd)
 	{
 		perror("cant allocate memory");
 		exit(EXIT_FAILURE);
@@ -76,24 +68,17 @@ int main(void)
 	while (status)
 	{
 		int i = 0;
+		char *cmd, **args;
 
 		_print("($) ");
-
 		get_cmd(&cmd);
 		args = split_cmd(cmd);
 
 		if (_strcmp(args[0], "exit") == 0)
 			status = 0;
 		execute(args);
-		keylogger(&userinput);
-		args = split_str(userinput);
-
-		if(_strcmp(args[0], "exit") == 0)
-			status = 0;
-		execute_cmd(args);
-
 	}
-	free(userinput);
+	free(cmd);
 	free(args);
 	return (0);
 }
