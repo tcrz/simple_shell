@@ -1,6 +1,6 @@
 #include "header.h"
 
-void get_cmd(char **userinput)
+void line_input(char **userinput)
 {
 	size_t r = 1000;
 
@@ -12,7 +12,7 @@ char **split_str(char *buf)
 	char *token, **eachstr, *delim;
 	int count = 0;
 	
-	if(buf[0] == '\n')
+	if(buf[0] == '\n' || buf[0] == ' ')
 	delim = "";
 	else
 		delim = " \n";
@@ -50,7 +50,7 @@ int main(void)
 	{
 
 		_print("($) ");
-		get_cmd(&userinput);
+		line_input(&userinput);
 		args = split_str(userinput);
 
 		if (_strcmp(args[0], "exit") == 0)
