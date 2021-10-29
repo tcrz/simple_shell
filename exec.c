@@ -12,7 +12,9 @@ void execute(char **args)
 {
 	int id;
 	int status;
-	
+
+	if(args[0][0] == '\n' || args[0][0] == ' ')
+		return;
 	id = fork();
 	if (id < 0)
 	{
