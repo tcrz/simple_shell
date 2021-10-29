@@ -1,36 +1,13 @@
 #include "header.h"
 
-void execute(char **args)
-{
-	int id;
-	int status;
-
-	id = fork();
-	if (id < 0)
-	{
-		perror("Fork failed");
-		exit(EXIT_FAILURE);
-	}
-	if (id == 0)
-	{
-		if (execve(args[0], args, NULL) == -1)
-			perror("error!");
-		exit(EXIT_FAILURE);
-	}
-	else
-		wait(&status);
-
-}
-
-
-void get_cmd(char **cmd)
+void get_cmd(char **userinput)
 {
 	size_t r = 1000;
 
-	getline(cmd, &r, stdin);
+	getline(userinput, &r, stdin);
 }
 
-char **split_cmd(char *buf)
+char **split_str(char *buf)
 {
 	char *token, **eachstr, *delim = " \n";
 	int count = 0;
@@ -56,10 +33,10 @@ char **split_cmd(char *buf)
 int main(void)
 {
 	unsigned int status = 1;
-	char *cmd, **args;
+	char *userinput, **args;
 
-	cmd = malloc(sizeof(char) * 1000);
-	if (!cmd)
+	userinput = malloc(sizeof(char) * 1000);
+	if (!userinput)
 	{
 		perror("cant allocate memory");
 		exit(EXIT_FAILURE);
@@ -67,17 +44,16 @@ int main(void)
 
 	while (status)
 	{
-		int i = 0;
 
 		_print("($) ");
-		get_cmd(&cmd);
-		args = split_cmd(cmd);
+		get_cmd(&userinput);
+		args = split_str(userinput);
 
 		if (_strcmp(args[0], "exit") == 0)
 			status = 0;
 		execute(args);
 	}
-	free(cmd);
+	free(userinput);
 	free(args);
 	return (0);
 }
