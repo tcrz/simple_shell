@@ -1,22 +1,22 @@
 #include "header.h"
 
-void line_input(char **userinput)
+/* void line_input(char **userinput)
 {
 	size_t r = 1000;
 
 	getline(userinput, &r, stdin);
-}
+} */
 
 char **split_str(char *buf)
 {
 	char *token, **eachstr, *delim;
 	int count = 0;
-	
+
 	if(buf[0] == '\n' || buf[0] == ' ')
 	delim = "";
 	else
 		delim = " \n";
-	eachstr = malloc(sizeof(char) * 100);
+	eachstr = malloc(sizeof(*eachstr) * 100);
 	if (!eachstr)
 		return (NULL);
 
@@ -38,8 +38,9 @@ int main(void)
 {
 	unsigned int status = 1;
 	char *userinput, **args;
+	size_t userinput_size = 1000;
 
-	userinput = malloc(sizeof(char) * 1000);
+	userinput = malloc(userinput_size);
 	if (!userinput)
 	{
 		perror("cant allocate memory");
@@ -50,12 +51,13 @@ int main(void)
 	{
 
 		_print("($) ");
-		line_input(&userinput);
+		getline(&userinput, &userinput_size, stdin);
 		args = split_str(userinput);
 
 		if (_strcmp(args[0], "exit") == 0)
 			status = 0;
-		execute(args);
+		else
+			execute(args);
 	}
 	free(userinput);
 	free(args);
