@@ -12,5 +12,6 @@ int _putchar(char str);
 void _print(char *str);
 int _strlen(char *str);
 int _strcmp(char *str, char *strcmp);
-
+void execute(char **args);
+char *_strcat(char *str);
 #endif
