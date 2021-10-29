@@ -1,13 +1,31 @@
 #include "header.h"
 
 /**
- *execute_cmd - run a command
- *@cmd: the command extracted from shell.c
- *Return: 1 if problem with execution or 0 if success
+ *execute - run a command
+ *@args: the command extracted from shell.c
+ *Return: NULL
  *
- *
-int execute_cmd(char *cmd)
-{
-	char *params[20];
+ */
 
-}*/
+
+void execute(char **args)
+{
+	int id;
+	int status;
+
+	id = fork();
+	if (id < 0)
+	{
+		perror("Fork failed");
+		exit(EXIT_FAILURE);
+	}
+	if (id == 0)
+	{
+		if (execve(_strcat(args[0]), args, NULL) == -1)
+			perror("error!");
+		exit(EXIT_FAILURE);
+	}
+	else
+		wait(&status);
+
+}
