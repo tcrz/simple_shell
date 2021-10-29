@@ -12,9 +12,9 @@ char **split_str(char *buf)
 	char *token, **eachstr, *delim;
 	int count = 0;
 
-	if(buf[0] == '\n' || buf[0] == ' ')
+	/*if(buf[0] == '\n' || buf[0] == ' ')
 	delim = "";
-	else
+	else */
 		delim = " \n";
 	eachstr = malloc(sizeof(*eachstr) * 100);
 	if (!eachstr)
@@ -54,7 +54,9 @@ int main(void)
 		getline(&userinput, &userinput_size, stdin);
 		args = split_str(userinput);
 
-		if (_strcmp(args[0], "exit") == 0)
+		if (!args[0])
+			args[0] = "";
+		else if (_strcmp(args[0], "exit") == 0)
 			status = 0;
 		else
 			execute(args);
