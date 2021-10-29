@@ -9,9 +9,13 @@ void get_cmd(char **userinput)
 
 char **split_str(char *buf)
 {
-	char *token, **eachstr, *delim = " ";
+	char *token, **eachstr, *delim;
 	int count = 0;
-
+	
+	if(buf[0] == '\n')
+	delim = "";
+	else
+		delim = " \n";
 	eachstr = malloc(sizeof(char) * 100);
 	if (!eachstr)
 		return (NULL);
