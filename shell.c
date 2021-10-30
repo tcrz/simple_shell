@@ -39,6 +39,7 @@ int main(void)
 	unsigned int status = 1;
 	char *userinput, **args;
 	size_t userinput_size = 1000;
+	int line;
 
 	userinput = malloc(userinput_size);
 	if (!userinput)
@@ -51,9 +52,13 @@ int main(void)
 	{
 
 		_print("($) ");
-		getline(&userinput, &userinput_size, stdin);
+		line = getline(&userinput, &userinput_size, stdin);
+		if(line == -1)
+		{
+			_putchar('\n');
+			return (0);
+		}
 		args = split_str(userinput);
-
 		if (!args[0])
 			args[0] = "";
 		else if (_strcmp(args[0], "exit") == 0)
