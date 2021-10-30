@@ -1,17 +1,18 @@
 #include "header.h"
-char * _strcat(char *str)
+
+char *_strcat(char *str)
 {
 	int i = 0, n = 0;
 	char *path = "/bin/", *buf = malloc(sizeof(char) * _strlen(str) + 6);
-	
-	if(buf == NULL)
+
+	if (buf == NULL)
 		return (NULL);
 	while (i < _strlen("/bin/"))
 	{
 		buf[i] = path[i];
 		i++;
 	}
-	while(n <= _strlen(str))
+	while (n <= _strlen(str))
 	{
 		buf[i] = str[n];
 		i++;
