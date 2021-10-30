@@ -1,21 +1,23 @@
 #include "header.h"
 
-/* void line_input(char **userinput)
-{
-	size_t r = 1000;
+extern char** environ;
 
-	getline(userinput, &r, stdin);
-} */
+void env()
+{
+	size_t i = 0;
+	for (i = 0; environ[i] != NULL; i++)
+	{
+		_print(environ[i]);
+		_print("\n");
+	}
+}
 
 char **split_str(char *buf)
 {
 	char *token, **eachstr, *delim;
 	int count = 0;
 
-	/*if(buf[0] == '\n' || buf[0] == ' ')
-	delim = "";
-	else */
-		delim = " \n";
+	delim = " \n";
 	eachstr = malloc(sizeof(*eachstr) * 100);
 	if (!eachstr)
 		return (NULL);
@@ -31,7 +33,6 @@ char **split_str(char *buf)
 	eachstr[count] = NULL;
 
 	return (eachstr);
-
 }
 
 int main(void)
@@ -53,7 +54,7 @@ int main(void)
 
 		_print("($) ");
 		line = getline(&userinput, &userinput_size, stdin);
-		if(line == -1)
+		if (line == -1)
 		{
 			_putchar('\n');
 			return (0);
@@ -63,10 +64,14 @@ int main(void)
 			args[0] = "";
 		else if (_strcmp(args[0], "exit") == 0)
 			status = 0;
+		else if (_strcmp(args[0], "env") == 0)
+                        env();
 		else
 			execute(args);
+
+		free(args);
 	}
 	free(userinput);
-	free(args);
+
 	return (0);
 }
