@@ -12,8 +12,11 @@ void execute(char **args)
 	int id;
 	int status;
 
-	if (args[0][0] == '\n' || args[0][0] == ' ')
+	if (access(_strcat(args[0]), X_OK))
+	{
+		perror("error!");
 		return;
+	}
 	id = fork();
 	if (id < 0)
 	{
