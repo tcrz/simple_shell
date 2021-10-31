@@ -14,4 +14,5 @@ int _strlen(char *str);
 int _strcmp(char *str, char *strcmp);
 void execute(char **args);
 char *_strcat(char *str);
+void env();
 #endif
