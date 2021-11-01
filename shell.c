@@ -1,4 +1,5 @@
 #include "header.h"
+#include <stdio.h>
 
 char **split_str(char *buf)
 {
@@ -23,7 +24,7 @@ char **split_str(char *buf)
 	return (eachstr);
 }
 
-int main(void)
+int main(int ac, char **av)
 {
 	unsigned int status = 1;
 	char *userinput, **args;
@@ -33,7 +34,7 @@ int main(void)
 	userinput = malloc(userinput_size);
 	if (!userinput)
 	{
-		perror("cant allocate memory");
+		_print("Failed, can not allocate memory!");
 		exit(EXIT_FAILURE);
 	}
 
@@ -48,14 +49,7 @@ int main(void)
 			return (0);
 		}
 		args = split_str(userinput);
-		if (!args[0])
-			args[0] = "";
-		else if (_strcmp(args[0], "exit") == 0)
-			status = 0;
-		else if (_strcmp(args[0], "env") == 0)
-                        env();
-		else
-			execute(args);
+		status = execute(args);
 
 		free(args);
 	}
