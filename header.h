@@ -7,12 +7,21 @@
 #include <sys/types.h>
 #include <sys/wait.h>
 
+ssize_t getline(char **lineptr, size_t *n, FILE *stream);
+extern char** environ;
+
+extern char *builtins_cmd[];
+extern int (*builtins_func[]) (char **);
 
 int _putchar(char str);
 void _print(char *str);
 int _strlen(char *str);
 int _strcmp(char *str, char *strcmp);
-void execute(char **args);
+int execute(char **args);
 char *_strcat(char *str);
-void env();
+int  env_func(char **args);
+int cd_func(char **args);
+int exit_func(char **args);
+int num_of_builtins();
+
 #endif
