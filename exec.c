@@ -41,7 +41,7 @@ int execute(char *filename, char **args, int count)
 	char *builtins_cmd[] = {"env", "exit", "cd"};
 	int builtins_num = sizeof(builtins_cmd) / sizeof(char *);
 
-	if (!args[0] || args[0] == "\t")
+	if (!args[0])
 		return (1);
 
 	for (i = 0; i < builtins_num; i++)
