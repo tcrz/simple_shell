@@ -16,9 +16,11 @@ extern int (*builtins_func[]) (char **);
 int _putchar(char str);
 void _print(char *str);
 int _strlen(char *str);
-int _strcmp(char *str, char *strcmp);
-int execute(char **args);
 char *_strcat(char *str);
+int _strcmp(char *str, char *strcmp);
+int _strncmp(char *s1, char *s2, size_t n);
+
+int execute(char **args);
 int  env_func(char **args);
 int cd_func(char **args);
 int exit_func(char **args);
