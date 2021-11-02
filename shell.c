@@ -49,7 +49,7 @@ int main(int ac, char **av)
 			return (0);
 		}
 		args = split_str(userinput);
-		status = execute(args);
+		status = execute(args, av[0]);
 
 		free(args);
 	}

@@ -7,12 +7,13 @@
  *
  */
 
-int execute(char **args)
+int execute(char **args, char *file)
 {
 	int i, id, status;
+	char *firstarg;
 
 	if (!args[0])
-		args[0] = "";
+		return 1;
 
 	for (i = 0; i < num_of_builtins(); i++)
 	{
@@ -20,13 +21,16 @@ int execute(char **args)
 			return ((*builtins_func[i])(args));
 	}
 
-	if (_strncmp(args[0], "/", 1) != 0)
-		args[0] = _strcat(args[0]);
+	firstarg = args[0];
+	 if (_strncmp(firstarg, "/", 1) != 0)
+		firstarg = _strcat(args[0]);
 
-	if (access(args[0], X_OK))
+	if (access(firstarg, X_OK))
 	{
+		_print(file);
+		_print(": ");
 		_print(args[0]);
-		_print(": command not found\n");
+		_print(": not found\n");
 		return (1);
 	}
 
@@ -38,8 +42,8 @@ int execute(char **args)
 	}
 	if (id == 0)
 	{
-		if (execve(args[0], args, NULL) == -1)
-			_print("Error! Execution failed");
+		if (execve(firstarg, args, NULL) == -1)
+			perror("error");
 		exit(EXIT_FAILURE);
 	}
 	else
