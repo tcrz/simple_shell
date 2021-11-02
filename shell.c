@@ -29,8 +29,9 @@ int main(int ac, char **av)
 	unsigned int status = 1;
 	char *userinput, **args;
 	size_t userinput_size = 1000;
-	int line;
+	int line, counter = 1;
 
+	ac = ac;
 	userinput = malloc(userinput_size);
 	if (!userinput)
 	{
@@ -49,8 +50,9 @@ int main(int ac, char **av)
 			return (0);
 		}
 		args = split_str(userinput);
-		status = execute(args, av[0]);
+		status = execute(av[0], args, counter);
 
+		counter++;
 		free(args);
 	}
 	free(userinput);
