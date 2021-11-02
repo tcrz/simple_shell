@@ -11,20 +11,25 @@ int execute(char **args)
 {
 	int i, id, status;
 
-	 if (!args[0])
+	if (!args[0])
 		args[0] = "";
+
 	for (i = 0; i < num_of_builtins(); i++)
 	{
 		if (_strcmp(args[0], builtins_cmd[i]) == 0)
 			return ((*builtins_func[i])(args));
 	}
 
-	if (access(_strcat(args[0]), X_OK))
+	if (_strncmp(args[0], "/", 1) != 0)
+		args[0] = _strcat(args[0]);
+
+	if (access(args[0], X_OK))
 	{
 		_print(args[0]);
 		_print(": command not found\n");
 		return (1);
 	}
+
 	id = fork();
 	if (id < 0)
 	{
@@ -33,7 +38,7 @@ int execute(char **args)
 	}
 	if (id == 0)
 	{
-		if (execve(_strcat(args[0]), args, NULL) == -1)
+		if (execve(args[0], args, NULL) == -1)
 			_print("Error! Execution failed");
 		exit(EXIT_FAILURE);
 	}
