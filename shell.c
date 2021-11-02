@@ -1,6 +1,10 @@
 #include "header.h"
 #include <stdio.h>
-
+/**
+ * split_str - splits a string into tokens
+ * @buf: The character to print
+ * Return: array of strings.
+ */
 char **split_str(char *buf)
 {
 	char *token, **eachstr, *delim;
@@ -24,6 +28,13 @@ char **split_str(char *buf)
 	return (eachstr);
 }
 
+
+/**
+ * main - the main program for shell.
+ * @ac: Arguments numbers.
+ * @av: string arguments.
+ * Return: 0 always.
+ */
 int main(int ac, char **av)
 {
 	unsigned int status = 1;

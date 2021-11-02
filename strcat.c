@@ -1,5 +1,11 @@
 #include "header.h"
 
+/**
+* _strcat - compares two strings
+* @str: first string
+* Return: returns concatenated string value
+*/
+
 char *_strcat(char *str)
 {
 	int i = 0, n = 0;

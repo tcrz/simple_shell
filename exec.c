@@ -1,5 +1,10 @@
 #include "header.h"
 
+/**
+ *printnum - prints number
+ *@n: number
+ */
+
 void printnum(int n)
 {
 	if (n < 0)
@@ -17,6 +22,12 @@ void printnum(int n)
 	_putchar(n % 10 + '0');
 }
 
+/**
+ *errormsg - run a command
+ *@args: the command extracted from shell.c
+ *@filename: name of main program
+ *@count: counts number of executions
+ */
 void errormsg(char *filename, char *args, int count)
 {
 	_print(filename);
@@ -30,8 +41,9 @@ void errormsg(char *filename, char *args, int count)
 /**
  *execute - run a command
  *@args: the command extracted from shell.c
- *Return: NULL
- *
+ *@filename: name of main program
+ *@count: counts number of executions
+ *Return: 1 or 0 depending on command executed
  */
 
 int execute(char *filename, char **args, int count)

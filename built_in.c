@@ -7,6 +7,11 @@ int (*builtins_func[])(char **) = {
 	&exit_func,
 	&cd_func};
 
+/**
+ * env_func - prints all environment variables.
+ * Return: 1
+ */
+
 int env_func(void)
 {
 	size_t i = 0;
@@ -19,11 +24,21 @@ int env_func(void)
 	return (1);
 }
 
+/**
+ * exit_func - exits the shell.
+ * Return: 0
+ */
+
 int exit_func(void)
 {
 	return (0);
 }
 
+/**
+ * cd_func - changes directory
+ * @args: array of strings
+ * Return: out
+ */
 int cd_func(char **args)
 {
 	if (!args[1])
