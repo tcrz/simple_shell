@@ -47,6 +47,7 @@ int main(int ac, char **av)
 	if (!userinput)
 	{
 		_print("Failed, can not allocate memory!");
+		free(userinput);
 		exit(EXIT_FAILURE);
 	}
 
