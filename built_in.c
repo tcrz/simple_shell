@@ -41,8 +41,12 @@ int exit_func(void)
  */
 int cd_func(char **args)
 {
+
 	if (!args[1])
+	{
+		chdir(getenv("HOME"));
 		return (1);
+	}
 	if (chdir(args[1]) != 0)
 		perror("no dir");
 	return (1);

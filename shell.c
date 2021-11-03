@@ -10,7 +10,7 @@ char **split_str(char *buf)
 	char *token, **eachstr, *delim;
 	int count = 0;
 
-	delim = " \n";
+	delim = " \t\r\n\a";
 	eachstr = malloc(sizeof(*eachstr) * 100);
 	if (!eachstr)
 		return (NULL);
@@ -52,13 +52,15 @@ int main(int ac, char **av)
 
 	while (status)
 	{
-
+		if(isatty(STDIN_FILENO))
 		_print("($) ");
 		line = getline(&userinput, &userinput_size, stdin);
 		if (line == -1)
 		{
+			status = 0;
+			if(isatty(STDIN_FILENO))
 			_putchar('\n');
-			return (0);
+			exit(EXIT_SUCCESS);
 		}
 		args = split_str(userinput);
 		status = execute(av[0], args, counter);
