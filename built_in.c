@@ -8,12 +8,14 @@ int (*builtins_func[])(char **) = {
 
 /**
  * env_func - prints all environment variables.
+ * @args: array of strings
  * Return: 1
  */
 
 int env_func(char **args)
 {
 	size_t i = 0;
+
 	args = args;
 	for (i = 0; environ[i] != NULL; i++)
 	{
@@ -25,12 +27,13 @@ int env_func(char **args)
 
 /**
  * exit_func - exits the shell.
+ * @args: array of strings
  * Return: 0
  */
 
 int exit_func(char **args)
 {
-	args=args;
+	args = args;
 	return (0);
 }
 
