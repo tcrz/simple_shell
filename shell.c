@@ -1,5 +1,5 @@
 #include "header.h"
-#include <stdio.h>
+
 /**
  * split_str - splits a string into tokens
  * @buf: The character to print
@@ -28,7 +28,6 @@ char **split_str(char *buf)
 	return (eachstr);
 }
 
-
 /**
  * main - the main program for shell.
  * @ac: Arguments numbers.
@@ -37,6 +36,8 @@ char **split_str(char *buf)
  */
 int main(int ac, char **av)
 {
+	signal(SIGINT, SIG_IGN);
+
 	unsigned int status = 1;
 	char *userinput, **args;
 	size_t userinput_size = 1000;
@@ -52,14 +53,14 @@ int main(int ac, char **av)
 
 	while (status)
 	{
-		if(isatty(STDIN_FILENO))
-		_print("($) ");
+		if (isatty(STDIN_FILENO))
+			_print("($) ");
 		line = getline(&userinput, &userinput_size, stdin);
 		if (line == -1)
 		{
 			status = 0;
-			if(isatty(STDIN_FILENO))
-			_putchar('\n');
+			if (isatty(STDIN_FILENO))
+				_putchar('\n');
 			exit(EXIT_SUCCESS);
 		}
 		args = split_str(userinput);
