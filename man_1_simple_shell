@@ -1,12 +1,13 @@
 .\" Manpage for Simple Shell.
-.\" Contact Tony baidoo <crzctrl5789@gmail.com> or Fitsum Belay <fitsum.ozo@gmail.com> to correct errors or typos.
+.\" Contact Tony Baidoo <crzctrl5789@gmail.com> or Fitsum Belay <fitsum.ozo@gmail.com> to correct errors or typos.
 .TH "Simple Shell" 1 "3 November 2021" "1.0" "Simple Shell man page"
 
 .SH NAME
 hsh - Simple Shell
 
 .SH SYNOPSIS
-hsh (does not support arguments)
+./hsh
+[command] [options]
 
 .SH DESCRIPTION
 Welcome to the Simple Shell project! This program is a simple shell that can be compiled and launched from the command line within any number of Linux versions.
@@ -61,5 +62,6 @@ Tony Baidoo
         https://github.com/tcrz
 
 	Fitsum Belay
-	    sami.lafine@holbertonschool.com
-	        https://github.com/afinesami
+	    fitsum.ozo@gmail.com
+	        https://github.com/f-i-t-s-u-m
+	        
