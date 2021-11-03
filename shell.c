@@ -68,6 +68,7 @@ int main(int ac, char **av)
 
 		counter++;
 		free(args);
+		free(userinput);
 	}
 	free(userinput);
 
