@@ -50,7 +50,7 @@ int execute(char *filename, char **args, int count)
 {
 	int i, id, status;
 	/*char *firstarg = args[0]; */
-	char *builtins_cmd[] = {"env", "exit", "cd", "help"};
+	char *builtins_cmd[] = {"env", "exit", "cd", "help"}, gval[100] = "/bin/";
 	int builtins_num = sizeof(builtins_cmd) / sizeof(char *);
 
 	if (!args[0])
@@ -64,7 +64,8 @@ int execute(char *filename, char **args, int count)
 	
 	/*if (_strncmp(firstarg, "/", 1) != 0)
 		firstarg = _strcat(args[0]); */
-	if (access(args[0], X_OK))
+	strcat(gval, args[0]);
+	if (access(gval, X_OK))
 	{
 		errormsg(filename, args[0], count);
 		return (1);
@@ -77,7 +78,7 @@ int execute(char *filename, char **args, int count)
 	}
 	if (id == 0)
 	{
-		if (execve(args[0], args, NULL) == -1)
+		if (execve(gval, args, NULL) == -1)
 		{	
 			perror("error");
 			
