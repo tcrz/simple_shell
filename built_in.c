@@ -40,13 +40,15 @@ int exit_func(void)
  */
 int cd_func(char **args)
 {
-
 	if (!args[1])
-	{
 		chdir(getenv("HOME"));
-		return (1);
+	else if (args[1][0] == '-')
+	{
+		chdir(getenv("OLDPWD"));
+		_print(getenv("OLDPWD"));
+		_putchar('\n');
 	}
-	if (chdir(args[1]) != 0)
+	else if (chdir(args[1]) != 0)
 		perror("no dir");
 	return (1);
 }

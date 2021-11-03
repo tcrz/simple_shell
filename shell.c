@@ -40,7 +40,7 @@ int main(int ac, char **av)
 
 	unsigned int status = 1;
 	char *userinput, **args;
-	size_t userinput_size = 1000;
+	size_t userinput_size = 0;
 	int line, counter = 1;
 
 	ac = ac;
