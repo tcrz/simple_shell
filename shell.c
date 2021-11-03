@@ -36,13 +36,12 @@ char **split_str(char *buf)
  */
 int main(int ac, char **av)
 {
-	signal(SIGINT, SIG_IGN);
-
 	unsigned int status = 1;
 	char *userinput, **args;
 	size_t userinput_size = 0;
 	int line, counter = 1;
 
+	signal(SIGINT, SIG_IGN);
 	ac = ac;
 	userinput = malloc(userinput_size);
 	if (!userinput)
