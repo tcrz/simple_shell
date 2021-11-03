@@ -50,7 +50,7 @@ int execute(char *filename, char **args, int count)
 {
 	int i, id, status;
 	char *firstarg = args[0];
-	char *builtins_cmd[] = {"env", "exit", "cd"};
+	char *builtins_cmd[] = {"env", "exit", "cd", "help"};
 	int builtins_num = sizeof(builtins_cmd) / sizeof(char *);
 
 	if (!args[0])
