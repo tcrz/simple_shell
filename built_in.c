@@ -11,10 +11,10 @@ int (*builtins_func[])(char **) = {
  * Return: 1
  */
 
-int env_func(void)
+int env_func(char **args)
 {
 	size_t i = 0;
-
+	args = args;
 	for (i = 0; environ[i] != NULL; i++)
 	{
 		_print(environ[i]);
@@ -28,8 +28,9 @@ int env_func(void)
  * Return: 0
  */
 
-int exit_func(void)
+int exit_func(char **args)
 {
+	args=args;
 	return (0);
 }
 
