@@ -9,9 +9,9 @@
 #include <sys/wait.h>
 
 
-char** environ;
+extern char** environ;
 
-int (*builtins_func[]) (char **);
+extern int (*builtins_func[]) (char **);
 
 /* print functions */
 int _putchar(char str);
