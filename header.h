@@ -31,5 +31,5 @@ int execute(char *filename, char **args, int count);
 int  env_func();
 int cd_func(char **args);
 int exit_func();
-
+int help_func(char **args);
 #endif
