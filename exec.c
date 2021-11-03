@@ -65,6 +65,7 @@ int execute(char *filename, char **args, int count)
 		firstarg = _strcat(args[0]);
 	if (access(firstarg, X_OK))
 	{
+		free(firstarg);
 		errormsg(filename, args[0], count);
 		return (1);
 	}
@@ -77,10 +78,13 @@ int execute(char *filename, char **args, int count)
 	if (id == 0)
 	{
 		if (execve(firstarg, args, NULL) == -1)
-			perror("error");
+		{	perror("error");
+			free(firstarg);
+		}
 		exit(EXIT_FAILURE);
 	}
 	else
 		wait(&status);
+
 	return (1);
 }
