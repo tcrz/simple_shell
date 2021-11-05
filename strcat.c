@@ -9,11 +9,17 @@
 char *_strcat(char *str)
 {
 	int i = 0, n = 0;
-	char *path = "/bin/", *buf = malloc(sizeof(char) * _strlen(str) + 6);
+	char *path = "/bin/";
+	char *buf;
 
+	if (_strncmp(str, "/", 1) == 0)
+		return (str);
+
+	buf = malloc(sizeof(char) * (_strlen(str) + _strlen(path) + 1));
 	if (buf == NULL)
 		return (NULL);
-	while (i < _strlen("/bin/"))
+
+	while (i < _strlen(path))
 	{
 		buf[i] = path[i];
 		i++;

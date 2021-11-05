@@ -20,7 +20,6 @@ char **split_str(char *buf)
 	{
 		eachstr[count] = token;
 		token = strtok(NULL, delim);
-
 		count++;
 	}
 	eachstr[count] = NULL;
@@ -36,23 +35,22 @@ char **split_str(char *buf)
  */
 int main(int ac, char **av)
 {
-	signal(SIGINT, SIG_IGN);
-
 	unsigned int status = 1;
-	char *userinput, **args;
-	size_t userinput_size = 0;
+	char *userinput = NULL, **args;
+	size_t userinput_size = 1;
 	int line, counter = 1;
 
+	signal(SIGINT, SIG_IGN);
 	ac = ac;
-	userinput = malloc(userinput_size);
-	if (!userinput)
-	{
-		_print("Failed, can not allocate memory!");
-		exit(EXIT_FAILURE);
-	}
 
 	while (status)
 	{
+		userinput = malloc(userinput_size);
+		if (!userinput)
+		{
+			_print("Failed, can not allocate memory!");
+			exit(EXIT_FAILURE);
+		}
 		if (isatty(STDIN_FILENO))
 			_print("($) ");
 		line = getline(&userinput, &userinput_size, stdin);
@@ -61,16 +59,16 @@ int main(int ac, char **av)
 			status = 0;
 			if (isatty(STDIN_FILENO))
 				_putchar('\n');
+			free(userinput);
 			exit(EXIT_SUCCESS);
 		}
 		args = split_str(userinput);
 		status = execute(av[0], args, counter);
 
 		counter++;
-		free(args);
 		free(userinput);
+		free(args);
 	}
-	free(userinput);
 
 	return (0);
 }
