@@ -7,6 +7,7 @@
 #include <signal.h>
 #include <sys/types.h>
 #include <sys/wait.h>
+#include <sys/stat.h>
 
 
 extern char **environ;
@@ -23,7 +24,8 @@ void errormsg(char *filename, char *args, int count);
 
 /* string functions */
 int _strlen(char *str);
-char *_strcat(char *str);
+/*char *_strcat(char *str); */
+char *_strcat(char *dest, char *src, char *fullpath);
 int _strcmp(char *str, char *strcmp);
 int _strncmp(char *s1, char *s2, size_t n);
 
@@ -35,4 +37,7 @@ int  env_func(char **args);
 int cd_func(char **args);
 int exit_func(char **args);
 int help_func(char **args);
+
+char **getpath(void);
+char *checkforpath(char *args, char **paths);
 #endif

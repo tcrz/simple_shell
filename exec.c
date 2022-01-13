@@ -49,7 +49,7 @@ void errormsg(char *filename, char *args, int count)
 int execute(char *filename, char **args, int count)
 {
 	int i, id, status;
-	char *firstarg, *builtins_cmd[] = {"env", "exit", "cd", "help"};
+	char *firstarg, **path, *fullcmd, *builtins_cmd[] = {"env", "exit", "cd", "help"};
 	int builtins_num = sizeof(builtins_cmd) / sizeof(char *);
 
 	if (!args[0])
@@ -59,33 +59,42 @@ int execute(char *filename, char **args, int count)
 		if (_strcmp(args[0], builtins_cmd[i]) == 0)
 			return ((*builtins_func[i])(args));
 	}
-	firstarg = _strcat(args[0]);
-	if (access(firstarg, X_OK))
+	path = getpath();
+	fullcmd = checkforpath(args[0], path);
+	printf("Found: %s\n", fullcmd);
+	/*firstarg = _strcat(args[0]);*/
+	if (access(fullcmd, X_OK))
 	{
 		errormsg(filename, args[0], count);
-		if (_strcmp(args[0], firstarg) != 0)
-			free(firstarg);
-		return (1);
+		free(path);
+		// if (_strcmp(args[0], fullcmd) != 0)
+		// 	free(fullcmd);
+		return (1); 
 	}
 	id = fork();
 	if (id < 0)
 	{
 		_print("Fork failed");
-		free(firstarg);
 		exit(EXIT_FAILURE);
 	}
 	else if (id == 0)
 	{
-		if (execve(firstarg, args, NULL) == -1)
+		if (execve(fullcmd, args, NULL) == -1)
+		{
 			perror("error");
-		free(firstarg);
+			// errormsg(filename, fullcmd, count);
+		}
+		if (_strcmp(args[0], fullcmd) != 0)
+			free(fullcmd);
+		free(path);
 		exit(EXIT_FAILURE);
 	}
 	else
 		{
 			wait(&status);
-			if (_strcmp(args[0], firstarg) != 0)
-				free(firstarg);
+			// if (_strcmp(args[0], fullcmd) != 0)
+			// free(fullcmd);
+			
 		}
 	return (1);
 }
