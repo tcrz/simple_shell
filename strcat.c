@@ -43,60 +43,26 @@ char *checkforpath(char *args, char **paths)
 	char *pathcmd = malloc(50);
 	while (paths[i] != NULL)
 	{
-		printf("loop %d\n", i);
-		printf("checking..\n");
+		
 		_strcat(paths[i], args, pathcmd);
-		printf("current path:%s\n", pathcmd);
+		// printf("current path:%s\n", pathcmd);
 		if (stat(pathcmd, &st) == 0)
 		{
-			printf("inside path check :");
+			printf("inside path check:\n");
 			return (pathcmd);
 		}
 		// else
 		// {
 		// 	printf("inside else\n");
-		// 	// free(pathcmd);
+			// free(pathcmd);
 		// }
 		i++;
 		
 	}
 	// printf("ennd..\n loop %d\n", i);
-	printf("path not found, returning command..\n");
+	// printf("path not found, returning command..\n");
 
-	// free(pathcmd);
+	free(pathcmd);
 	return (args);
 }
 
-/**
-* _strcat - compares two strings
-* @str: first string
-* Return: returns concatenated string value
-*/
-/*
-char *_strcat(char *str)
-{
-	int i = 0, n = 0;
-	char *path = "/bin/";
-	char *buf;
-
-	if (_strncmp(str, "/", 1) == 0)
-		return (str);
-
-	buf = malloc(sizeof(char) * (_strlen(str) + _strlen(path) + 1));
-	if (buf == NULL)
-		return (NULL);
-
-	while (i < _strlen(path))
-	{
-		buf[i] = path[i];
-		i++;
-	}
-	while (n <= _strlen(str))
-	{
-		buf[i] = str[n];
-		i++;
-		n++;
-	}
-	return (buf);
-}
-*/

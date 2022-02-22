@@ -30,7 +30,7 @@ int _strcmp(char *str, char *strcmp);
 int _strncmp(char *s1, char *s2, size_t n);
 
 /* execute function */
-int execute(char *filename, char **args, int count);
+int execute(char *filename, char **args, int count, char **paths);
 
 /* builtin functions */
 int  env_func(char **args);

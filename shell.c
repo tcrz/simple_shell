@@ -39,10 +39,11 @@ int main(int ac, char **av)
 	char *userinput = NULL, **args;
 	size_t userinput_size = 1;
 	int line, counter = 1;
+	char **allpaths = getpath();
 
 	signal(SIGINT, SIG_IGN);
 	ac = ac;
-
+	
 	while (status)
 	{
 		userinput = malloc(userinput_size);
@@ -63,12 +64,12 @@ int main(int ac, char **av)
 			exit(EXIT_SUCCESS);
 		}
 		args = split_str(userinput);
-		status = execute(av[0], args, counter);
+		status = execute(av[0], args, counter, allpaths);
 
 		counter++;
 		free(userinput);
 		free(args);
 	}
-
+	free(allpaths);
 	return (0);
 }
