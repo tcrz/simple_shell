@@ -25,7 +25,7 @@ void errormsg(char *filename, char *args, int count);
 /* string functions */
 int _strlen(char *str);
 /*char *_strcat(char *str); */
-char *_strcat(char *dest, char *src, char *fullpath);
+char *_strcat(char *dest, char *src, char *fullstr);
 int _strcmp(char *str, char *strcmp);
 int _strncmp(char *s1, char *s2, size_t n);
 

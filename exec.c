@@ -43,6 +43,7 @@ void errormsg(char *filename, char *args, int count)
  *@args: the command extracted from shell.c
  *@filename: name of main program
  *@count: counts number of executions
+ *@path: array of all environment paths
  *Return: 1 or 0 depending on command executed
  */
 
@@ -60,13 +61,11 @@ int execute(char *filename, char **args, int count, char **path)
 		if (_strcmp(args[0], builtins_cmd[i]) == 0)
 			return ((*builtins_func[i])(args));
 	}
-	
 	fullcmd = checkforpath(args[0], path);
-
 	if (access(fullcmd, X_OK))
 	{
 		errormsg(filename, args[0], count);
-		return (1); 
+		return (1);
 	}
 	id = fork();
 	if (id < 0)
@@ -88,7 +87,7 @@ int execute(char *filename, char **args, int count, char **path)
 			wait(&status);
 			if (_strcmp(args[0], fullcmd) != 0)
 			free(fullcmd);
-			
+
 		}
 	return (1);
 }

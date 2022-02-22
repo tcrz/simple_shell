@@ -43,7 +43,7 @@ int main(int ac, char **av)
 
 	signal(SIGINT, SIG_IGN);
 	ac = ac;
-	
+
 	while (status)
 	{
 		userinput = malloc(userinput_size);
