@@ -51,7 +51,7 @@ void errormsg(char *filename, char *args, int count)
 int execute(char *filename, char **args, int count, char **path)
 {
 	int i, id, status;
-	char *firstarg, *fullcmd, *builtins_cmd[] = {"env", "exit", "cd", "help"};
+	char *fullcmd, *builtins_cmd[] = {"env", "exit", "cd", "help"};
 	int builtins_num = sizeof(builtins_cmd) / sizeof(char *);
 
 	if (!args[0])
