@@ -1,5 +1,5 @@
 # SIMPLE SHELL #
-Shell is a program that takes the command inputs written from the the user’s keyboard and passes them to the machine to execute them through the kernel. It also verifies if the command inputs from the user are correct. Simple Shell is a simple program which akes the keyboard commands and delivers them to the system to be executed. This project contains functionalities of shell such as : Handling PATHS, implementing BUILT-INS and executing commands. This shell is developed in the programming language C.
+This project is a simple version of the linux shell. Simple Shell is a simple program which takes the keyboard commands and delivers them to the system to be executed. It also verifies if the command inputs from the user are correct. This project contains functionalities of shell such as : Handling PATHS, implementing BUILT-INS and executing commands. This shell is developed in the programming language C.
 
 ## DESCRIPTION ##
 ## Essential Functionalities of the Simple Shell:
